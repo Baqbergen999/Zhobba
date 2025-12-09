@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Химия сайты — қарапайым HTML/JS/CSS</title>
+  <style>
+    /* --- Global --- */
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent1:#7dd3fc;
+      --accent2:#a78bfa;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --text:#e6eef8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--text);background: radial-gradient(1200px 600px at 10% 10%, rgba(167,139,250,0.06), transparent), radial-gradient(900px 400px at 90% 90%, rgba(125,211,252,0.04), transparent), linear-gradient(180deg,#071021 0%, var(--bg) 100%);}
+    .app{min-height:100vh;padding:28px;display:flex;flex-direction:column;gap:18px}
+
+    /* --- Header / Nav --- */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .mark{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(167,139,250,0.12);font-weight:700;color:#031029}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav-btn{background:transparent;border:1px solid var(--glass);padding:8px 12px;border-radius:10px;cursor:pointer;color:var(--text);backdrop-filter: blur(4px);transition:all .22s}
+    .nav-btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.6);border-color:rgba(255,255,255,0.06)}
+    .nav-btn.active{background:linear-gradient(90deg, rgba(125,211,252,0.06), rgba(167,139,250,0.04));border:1px solid rgba(255,255,255,0.06)}
+
+    /* --- Layout --- */
+    .container{display:grid;grid-template-columns:320px 1fr;gap:20px}
+    .sidebar{padding:16px;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.01));border-radius:14px;border:1px solid var(--glass);min-height:480px}
+    .content{padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;border:1px solid var(--glass);min-height:480px;position:relative;overflow:hidden}
+
+    /* --- Animated background particles --- */
+    .particles{position:absolute;inset:0;pointer-events:none;opacity:0.25}
+    .particle{position:absolute;border-radius:999px;mix-blend-mode:screen}
+
+    /* --- Home --- */
+    .hero{display:flex;gap:20px;align-items:center}
+    .hero .text{flex:1}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021122;font-weight:600;margin-bottom:12px}
+    h1{margin:0;font-size:28px}
+    p.lead{opacity:0.9}
+
+    /* --- Periodic table (simple) --- */
+    .ptable{display:grid;grid-template-columns:repeat(18,1fr);gap:6px}
+    .element{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:8px;padding:8px;text-align:center;border:1px solid var(--glass);min-height:72px;cursor:pointer;transition:transform .18s, box-shadow .18s}
+    .element:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    .el-num{font-size:11px;opacity:0.7}
+    .el-symbol{font-weight:700;font-size:18px}
+    .el-name{font-size:10px;opacity:0.85}
+
+    /* --- Molecule viewer (SVG) --- */
+    .molecule-wrap{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:center}
+    .mol-canvas{width:100%;height:420px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));display:grid;place-items:center;border:1px solid var(--glass)}
+    .mol-controls{background:var(--glass-2);padding:12px;border-radius:10px;border:1px solid var(--glass)}
+    .btn{display:inline-block;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;margin:6px;cursor:pointer}
+
+    /* --- Atom viewer (canvas) --- */
+    .atom-area{display:flex;gap:18px;align-items:center}
+    .atom-canvas{width:100%;height:420px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid var(--glass)}
+
+    /* --- Acids page --- */
+    .accordion{border-radius:8px;overflow:hidden}
+    .acc-item{border-bottom:1px solid rgba(255,255,255,0.03)}
+    .acc-head{padding:12px;display:flex;justify-content:space-between;cursor:pointer}
+    .acc-body{padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+
+    /* --- Utilities --- */
+    .hidden{display:none}
+    .small{font-size:13px;opacity:0.9}
+
+    /* --- Responsive --- */
+    @media(max-width:900px){.container{grid-template-columns:1fr}.sidebar{order:2}.content{order:1}}
+
+    /* --- Keyframe animations --- */
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+    .float{animation:floaty 4s ease-in-out infinite}
+
+    @keyframes spin-slow{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+    .spin{animation:spin-slow 18s linear infinite}
+
+    /* little flourish on links */
+    a.fancy{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:6px 10px;border-radius:8px;color:#021122;font-weight:600;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">
+        <div class="mark">CH</div>
+        <div>
+          <div style="font-weight:700">Химия — қысқаша</div>
+          <div style="font-size:12px;opacity:0.7">HTML + JavaScript + CSS нұсқасы</div>
+        </div>
+      </div>
+
+      <nav id="topNav"></nav>
+    </header>
+
+    <main class="container">
+      <aside class="sidebar">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="chip">Үйлесімді навигация</div>
+          <div class="small">Парақтарды таңдап, интерактивті бөліктерді қараңыз.</div>
+          <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+            <button class="nav-btn" data-target="home">Басты бет</button>
+            <button class="nav-btn" data-target="table">Кесте</button>
+            <button class="nav-btn" data-target="molecule">Молекула</button>
+            <button class="nav-btn" data-target="atom">Атом</button>
+            <button class="nav-btn" data-target="acids">Қышқылдар</button>
+          </div>
+
+          <div style="margin-top:16px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid var(--glass);">
+            <div style="font-weight:700">Қосымша</div>
+            <div class="small">Анимациялар көп қосылды — сайт жеңіл әрі жылдам болуы үшін оларды қарапайым ұстауға тырыстым.</div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="particles" id="particles"></div>
+
+        <!-- HOME -->
+        <section id="home" class="page">
+          <div class="hero">
+            <div class="text">
+              <div class="chip">Химияға кіріспе</div>
+              <h1>Химия — заттардың құрылымы мен өзгерісінің ғылымы</h1>
+              <p class="lead">Химия — заттардың қасиеттерін, олардың өзара әрекеттесуін және жаңа заттардың түзілуін зерттейді. Мұнда периодтық кестеден бастап молекулалар мен атом құрылымына дейінгі бөлімдер бар.</p>
+              <p class="small">Төмендегі навигациядан қалаған бөлікті таңдаңыз.</p>
+            </div>
+            <div class="float" style="min-width:260px">
+              <div style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;border:1px solid var(--glass);">
+                <svg width="220" height="160" viewBox="0 0 220 160" class="spin" aria-hidden>
+                  <g transform="translate(110,80)">
+                    <circle r="28" fill="rgba(255,255,255,0.03)" />
+                    <g>
+                      <circle cx="-48" cy="0" r="8" fill="#7dd3fc" />
+                      <circle cx="48" cy="0" r="8" fill="#a78bfa" />
+                      <circle cx="0" cy="-60" r="6" fill="#ffd580" />
+                    </g>
+                  </g>
+                </svg>
+                <div style="font-size:12px;margin-top:8px;opacity:0.85">Интерактивті молекула және атом модельдері</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TABLE -->
+        <section id="table" class="page hidden">
+          <h2>Периодтық кесте — қарапайым көрініс</h2>
+          <p class="small">Толық кесте өте үлкен болады, мына жерде бірнеше топ элементтері көрсетілген. Элементті бассаңыз, деталь көрінеді.</p>
+          <div style="margin-top:12px;">
+            <div class="ptable" id="ptable"></div>
+          </div>
+
+          <div id="elementDetail" style="margin-top:16px;padding:12px;border-radius:10px;border:1px solid var(--glass);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)"></div>
+        </section>
+
+        <!-- MOLECULE -->
+        <section id="molecule" class="page hidden">
+          <h2>Молекула структурасы</h2>
+          <div style="margin-top:8px;" class="molecule-wrap">
+            <div class="mol-canvas" id="molCanvas">
+              <!-- SVG will be injected here -->
+            </div>
+            <div class="mol-controls">
+              <div style="font-weight:700;margin-bottom:8px">Молекула таңдау</div>
+              <div>
+                <button class="btn" data-mol="water">H₂O (Су)</button>
+                <button class="btn" data-mol="co2">CO₂</button>
+                <button class="btn" data-mol="benzene">C₆H₆ (Бензол)</button>
+                <button class="btn" data-mol="ethanol">C₂H₅OH (Этанол)</button>
+              </div>
+
+              <div style="margin-top:12px;font-size:13px">Қозғалтқыштар:</div>
+              <label style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" id="molRotate" checked /> Автоматты айналу</label>
+              <label style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="range" id="molScale" min="0.6" max="1.6" step="0.05" value="1" /> Масштаб</label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ATOM -->
+        <section id="atom" class="page hidden">
+          <h2>Атом құрылысы — визуализация</h2>
+          <div style="margin-top:8px;" class="atom-area">
+            <canvas id="atomCanvas" class="atom-canvas"></canvas>
+            <div style="width:320px;">
+              <div style="font-weight:700">Элемент таңдау</div>
+              <select id="atomSelect" style="width:100%;padding:8px;margin-top:8px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:var(--text)">
+                <option value="h">H — Жайдан</option>
+                <option value="he">He — Гелий</option>
+                <option value="c" selected>C — Көміртек</option>
+                <option value="o">O — Оттек</option>
+                <option value="fe">Fe — Темір</option>
+              </select>
+
+              <div style="margin-top:12px" id="atomInfo" class="small">Электрон қабаттары мен үдеуін бақылауға болады.</div>
+
+              <label style="display:flex;align-items:center;gap:8px;margin-top:12px"><input type="range" id="speedRange" min="0.2" max="2.4" step="0.1" value="1" /> Қозғалыс жылдамдығы</label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACIDS -->
+        <section id="acids" class="page hidden">
+          <h2>Қышқылдар және басқа қосылыстар</h2>
+          <p class="small">Төменде бірнеше танымал қышқылдардың тізімі — әрқайсысында қысқаша сипаттама және қауіпсіздік ескертпесі бар.</p>
+
+          <div class="accordion" style="margin-top:12px">
+            <div class="acc-item">
+              <div class="acc-head">Сүт қышқылы (Lactic acid) <span class="small">(pH ~2-3)</span></div>
+              <div class="acc-body hidden">Органикалық қышқыл, тағам өнеркәсібінде қолданылады. Жеңіл тітіркендіргіш — көзге, теріге шашпаңыз.</div>
+            </div>
+            <div class="acc-item">
+              <div class="acc-head">Султан қышқылы (Hydrochloric acid) <span class="small">(pH < 1)</span></div>
+              <div class="acc-body hidden">Күшті минералды қышқыл, металдарды тотығудан тазарту үшін пайдаланылады. Қауіпсіздік: қорғаныс көзілдірік, қолғап қажет.</div>
+            </div>
+            <div class="acc-item">
+              <div class="acc-head">Сірке қышқылы (Acetic acid) <span class="small">(pH ~2.4)</span></div>
+              <div class="acc-body hidden">Ас үйде қолданылатын уытты емес қышқылдың әлсіз түрі (сірке суы). Ауызға және көзге тиюінен сақтаңыз.</div>
+            </div>
+          </div>
+
+        </section>
+
+      </section>
+    </main>
+
+    <footer style="opacity:0.85;margin-top:6px;font-size:13px">Жасалған: HTML + Vanilla JS + CSS — сұрасаңыз кодты экспорттаймын.</footer>
+  </div>
+
+  <script>
+    /* --- Particles background --- */
+    (function(){
+      const pWrap = document.getElementById('particles');
+      const colors = ['#7dd3fc','#a78bfa','#ffd580','#6ee7b7'];
+      for(let i=0;i<12;i++){
+        const div = document.createElement('div');
+        div.className='particle';
+        const size = 20 + Math.round(Math.random()*60);
+        div.style.width = div.style.height = size+'px';
+        div.style.left = Math.random()*100+'%';
+        div.style.top = Math.random()*100+'%';
+        div.style.background = colors[i%colors.length];
+        div.style.opacity = 0.06 + Math.random()*0.14;
+        div.style.transform = 'translate3d(0,0,0)';
+        div.style.animation = 'floaty '+(6+Math.random()*8)+'s ease-in-out '+(Math.random()*3)+'s infinite';
+        pWrap.appendChild(div);
+      }
+    })();
+
+    /* --- Navigation wiring --- */
+    const pages = Array.from(document.querySelectorAll('.page'));
+    function showPage(id){
+      pages.forEach(p=>p.id===id? p.classList.remove('hidden') : p.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.target===id));
+      // sync top nav too
+      document.querySelectorAll('#topNav .nav-btn').forEach(b=>b.classList.toggle('active', b.dataset-target===id));
+    }
+    document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click', ()=>showPage(b.dataset.target)));
+
+    // Build small top nav (copy)
+    const topNav = document.getElementById('topNav');
+    ['home','table','molecule','atom','acids'].forEach(t=>{
+      const btn = document.createElement('button');
+      btn.className='nav-btn';
+      btn.dataset.target=t;
+      btn.textContent = ({home:'Басты',table:'Кесте',molecule:'Молекула',atom:'Атом',acids:'Қышқылдар'}[t]);
+      btn.addEventListener('click', ()=>showPage(t));
+      topNav.appendChild(btn);
+    });
+
+    // default
+    showPage('home');
+
+    /* --- Simple periodic table generation (partial) --- */
+    const elements = [
+      {z:1,s:'H',n:'Hydrogen',grp:1,row:1},
+      {z:2,s:'He',n:'Helium',grp:18,row:1},
+      {z:3,s:'Li',n:'Lithium',grp:1,row:2},
+      {z:4,s:'Be',n:'Beryllium',grp:2,row:2},
+      {z:5,s:'B',n:'Boron',grp:13,row:2},
+      {z:6,s:'C',n:'Carbon',grp:14,row:2},
+      {z:7,s:'N',n:'Nitrogen',grp:15,row:2},
+      {z:8,s:'O',n:'Oxygen',grp:16,row:2},
+      {z:9,s:'F',n:'Fluorine',grp:17,row:2},
+      {z:10,s:'Ne',n:'Neon',grp:18,row:2},
+      // row 3 (shortened)
+      {z:11,s:'Na',n:'Sodium',grp:1,row:3},
+      {z:12,s:'Mg',n:'Magnesium',grp:2,row:3},
+      {z:13,s:'Al',n:'Aluminium',grp:13,row:3},
+      {z:14,s:'Si',n:'Silicon',grp:14,row:3},
+      {z:15,s:'P',n:'Phosphorus',grp:15,row:3},
+      {z:16,s:'S',n:'Sulfur',grp:16,row:3},
+      {z:17,s:'Cl',n:'Chlorine',grp:17,row:3},
+      {z:18,s:'Ar',n:'Argon',grp:18,row:3}
+    ];
+
+    const ptable = document.getElementById('ptable');
+    // create 18 columns x 7 rows simplified view (we'll place gaps)
+    const total = 18*4; // just first 4 rows visible
+    for(let i=0;i<total;i++){
+      const cell = document.createElement('div');
+      cell.className='element';
+      cell.style.minHeight='64px';
+      // attempt to find element by grid position (simple approach)
+      const row = Math.floor(i/18)+1;
+      const col = (i%18)+1;
+      const el = elements.find(e=>e.row===row && e.grp===col);
+      if(el){
+        cell.innerHTML = `<div class='el-num'>${el.z}</div><div class='el-symbol'>${el.s}</div><div class='el-name'>${el.n}</div>`;
+        cell.addEventListener('click', ()=>showElementDetail(el));
+      } else {
+        cell.style.opacity=0.07;cell.style.minHeight='48px';cell.innerHTML='';
+      }
+      ptable.appendChild(cell);
+    }
+
+    function showElementDetail(el){
+      const box = document.getElementById('elementDetail');
+      box.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div><div style='font-weight:700;font-size:18px'>${el.s} — ${el.n}</div><div class='small'>Атом нөмірі: ${el.z}</div></div><div style='font-size:30px;opacity:0.95'>${el.s}</div></div><div style='margin-top:10px' class='small'>Кейбір қасиеттер: атомдық масса — (мысал), электрон конфигурация — (мысал). Бұл аймақты толықтыруға болады.</div>`;
+    }
+
+    /* --- Molecule SVGs and controls --- */
+    const molCanvas = document.getElementById('molCanvas');
+    const molRotate = document.getElementById('molRotate');
+    const molScale = document.getElementById('molScale');
+    let currentMol = 'water';
+
+    function renderMolecule(name){
+      molCanvas.innerHTML='';
+      if(name==='water'){
+        molCanvas.innerHTML = `
+          <svg viewBox="0 0 400 260" width="100%" height="100%" id="svgMol">
+            <defs>
+              <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g transform="translate(200,130)" id="molGroup">
+              <circle r="18" cx="-60" fill="#7dd3fc" />
+              <text x="-60" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">H</text>
+              <circle r="18" cx="60" fill="#7dd3fc" />
+              <text x="60" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">H</text>
+              <circle r="26" fill="#ffd580" />
+              <text x="0" y="6" text-anchor="middle" style="font-size:12px;font-weight:800;fill:#021122">O</text>
+              <line x1="-34" y1="6" x2="-58" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+              <line x1="34" y1="6" x2="58" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </svg>`;
+      } else if(name==='co2'){
+        molCanvas.innerHTML = `
+          <svg viewBox="0 0 400 260" width="100%" height="100%" id="svgMol">
+            <g transform="translate(200,130)" id="molGroup">
+              <circle r="26" fill="#ffd580" /><text x="0" y="6" text-anchor="middle" style="font-size:12px;font-weight:800;fill:#021122">C</text>
+              <circle r="18" cx="-110" fill="#7dd3fc" /><text x="-110" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">O</text>
+              <circle r="18" cx="110" fill="#7dd3fc" /><text x="110" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">O</text>
+              <line x1="-86" y1="6" x2="-36" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+              <line x1="36" y1="6" x2="86" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </svg>`;
+      } else if(name==='benzene'){
+        molCanvas.innerHTML = `
+          <svg viewBox="0 0 400 260" width="100%" height="100%" id="svgMol">
+            <g transform="translate(200,130) rotate(0)" id="molGroup">
+              <g id="hex" style="transform-origin:200px 130px;">
+                <!-- hexagon ring -->
+                <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" transform="translate(200,130)" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="6" />
+                <!-- carbons -->
+                <circle cx="0" cy="-60" r="10" fill="#ffd580" />
+                <circle cx="52" cy="-30" r="10" fill="#ffd580" />
+                <circle cx="52" cy="30" r="10" fill="#ffd580" />
+                <circle cx="0" cy="60" r="10" fill="#ffd580" />
+                <circle cx="-52" cy="30" r="10" fill="#ffd580" />
+                <circle cx="-52" cy="-30" r="10" fill="#ffd580" />
+              </g>
+            </g>
+          </svg>`;
+      } else if(name==='ethanol'){
+        molCanvas.innerHTML = `
+          <svg viewBox="0 0 400 260" width="100%" height="100%" id="svgMol">
+            <g transform="translate(200,130)" id="molGroup">
+              <circle r="26" fill="#ffd580" /><text x="0" y="6" text-anchor="middle" style="font-size:12px;font-weight:800;fill:#021122">C</text>
+              <circle r="18" cx="60" fill="#ffd580" /><text x="60" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">C</text>
+              <circle r="18" cx="110" fill="#7dd3fc" /><text x="110" y="6" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#021122">O</text>
+              <line x1="34" y1="6" x2="56" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+              <line x1="76" y1="6" x2="96" y2="6" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </svg>`;
+      }
+      // apply scale and rotate if toggled
+      const group = molCanvas.querySelector('#molGroup');
+      if(group){
+        group.style.transition = 'transform 0.3s linear';
+        group.style.transformOrigin = 'center';
+      }
+    }
+
+    document.querySelectorAll('[data-mol]').forEach(b=>b.addEventListener('click', ()=>{currentMol=b.dataset.mol; renderMolecule(currentMol);}));
+    molScale.addEventListener('input', ()=>{const g = molCanvas.querySelector('#molGroup'); if(g) g.style.transform = `scale(${molScale.value})`;});
+
+    renderMolecule(currentMol);
+    // rotate loop
+    let rot=0;
+    function molLoop(){
+      if(molRotate.checked){
+        rot += 0.3;
+        const g = molCanvas.querySelector('#molGroup');
+        if(g) g.style.transform = `rotate(${rot}deg) scale(${molScale.value})`;
+      }
+      requestAnimationFrame(molLoop);
+    }
+    molLoop();
+
+    /* --- Atom canvas animation --- */
+    const atomCanvas = document.getElementById('atomCanvas');
+    const atCtx = atomCanvas.getContext('2d');
+    function resizeAtom(){
+      const rect = atomCanvas.getBoundingClientRect();
+      atomCanvas.width = rect.width * devicePixelRatio;
+      atomCanvas.height = rect.height * devicePixelRatio;
+      atomCanvas.style.width = rect.width + 'px';
+      atomCanvas.style.height = rect.height + 'px';
+      atCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    window.addEventListener('resize', resizeAtom);
+    resizeAtom();
+
+    const atomSelect = document.getElementById('atomSelect');
+    const speedRange = document.getElementById('speedRange');
+    const atomInfo = document.getElementById('atomInfo');
+
+    const atomConfigs = {
+      h:{orbits:[[50]],electrons:[1]},
+      he:{orbits:[[50]],electrons:[2]},
+      c:{orbits:[[45,80]],electrons:[2,4]},
+      o:{orbits:[[45,80]],electrons:[2,6]},
+      fe:{orbits:[[40,70,100,130]],electrons:[2,8,14,2]}
+    };
+
+    function drawAtom(){
+      atCtx.clearRect(0,0,atomCanvas.width,atomCanvas.height);
+      const rect = atomCanvas.getBoundingClientRect();
+      const cx = rect.width/2, cy = rect.height/2;
+      // nucleus
+      atCtx.beginPath(); atCtx.fillStyle = '#ffd580'; atCtx.arc(cx,cy,14,0,Math.PI*2); atCtx.fill();
+      // electrons
+      const cfg = atomConfigs[atomSelect.value] || atomConfigs['c'];
+      const time = Date.now()/1000 * parseFloat(speedRange.value);
+      let orbitIndex=0;
+      cfg.orbits.forEach((orbit, oi)=>{
+        const rBase = orbit[0];
+        // draw orbit ring
+        atCtx.beginPath(); atCtx.strokeStyle='rgba(255,255,255,0.06)'; atCtx.lineWidth=1; atCtx.arc(cx,cy,rBase,0,Math.PI*2); atCtx.stroke();
+        const electronCount = cfg.electrons[oi] || 0;
+        for(let i=0;i<electronCount;i++){
+          const angle = time*(0.9+oi*0.3) + i*(Math.PI*2/electronCount);
+          const ex = cx + Math.cos(angle)*rBase;
+          const ey = cy + Math.sin(angle)*rBase;
+          atCtx.beginPath(); atCtx.fillStyle = (i%2? '#7dd3fc' : '#a78bfa'); atCtx.arc(ex,ey,6,0,Math.PI*2); atCtx.fill();
+        }
+      });
+
+      requestAnimationFrame(drawAtom);
+    }
+    drawAtom();
+
+    atomSelect.addEventListener('change', ()=>{
+      const name = atomSelect.selectedOptions[0].textContent;
+      atomInfo.textContent = name + ' — электрон қабаттары көрсетілді. Қозғалыс жылдамдығын реттеңіз.';
+    });
+
+    /* --- Accordion behavior --- */
+    document.querySelectorAll('.acc-item').forEach(item=>{
+      const head = item.querySelector('.acc-head');
+      const body = item.querySelector('.acc-body');
+      head.addEventListener('click', ()=>{ body.classList.toggle('hidden'); });
+    });
+
+    /* --- Molecule button hover animations (taste) --- */
+    document.querySelectorAll('.btn').forEach(b=>{b.addEventListener('mouseenter', ()=>b.style.transform='translateY(-6px)'); b.addEventListener('mouseleave', ()=>b.style.transform='translateY(0)');});
+
+    // small polish: make first element selectable on load
+    const firstEl = document.querySelector('.element:not([style*="opacity:0.07"])'); if(firstEl) firstEl.click();
+
+    // ensure canvas is sized correctly when switching to atom page
+    document.querySelectorAll('[data-target]').forEach(btn=>btn.addEventListener('click', ()=>{setTimeout(resizeAtom,120);}));
+  </script>
+</body>
+</html>

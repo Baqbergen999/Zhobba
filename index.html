@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Химия проект сайты - by Bakbergen N.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Жүктеу экраны -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="atom-loader">
+            <div class="electron"></div>
+            <div class="electron"></div>
+            <div class="electron"></div>
+        </div>
+        <h2 class="loading-text">ChemQuest жүктелуде...</h2>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Басты навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">ChemQuest</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-section="dashboard">Басты</a>
+                <a href="#" class="nav-link" data-section="periodic">Периодтық Кесте</a>
+                <a href="#" class="nav-link" data-section="lab">Виртуалды Зертхана</a>
+                <a href="#" class="nav-link" data-section="quests">Квесттер</a>
+                <a href="#" class="nav-link" data-section="molecules">3D Молекулалар</a>
+            </div>
+            <div class="user-info">
+                <div class="streak-counter">
+                    <span class="streak-icon">🔥</span>
+                    <span class="streak-text" id="streakDays">0</span>
+                </div>
+                <div class="level-badge">
+                    <span class="level-icon">⚡</span>
+                    <span class="level-text" id="userLevel">1</span>
+                </div>
+                <div class="xp-counter">
+                    <span class="xp-icon">💎</span>
+                    <span class="xp-text" id="userXP">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Басты контент -->
+    <main class="main-content">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Химияның<br>
+                        <span class="gradient-text">Қызықты Әлеміне</span><br>
+                        Қош Келдіңіз!
+                    </h1>
+                    <p class="hero-subtitle">Ойын арқылы химияны меңгер!</p>
+                </div>
+                <div class="hero-visual">
+                    <canvas id="heroCanvas" width="500" height="500"></canvas>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="achievementCount">0</div>
+                        <div class="stat-label">Жетістіктер</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔬</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="experimentCount">0</div>
+                        <div class="stat-label">Эксперименттер</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🧠</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="accuracyRate">0%</div>
+                        <div class="stat-label">Дұрыстық</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="lessonsCompleted">0</div>
+                        <div class="stat-label">Сабақтар</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Периодтық кесте -->
+        <section id="periodic" class="section">
+            <div class="periodic-header">
+                <h2 class="section-title">Интерактивті Периодтық Кесте</h2>
+                <div class="periodic-filters">
+                    <button class="filter-btn active" data-filter="all">Барлығы</button>
+                    <button class="filter-btn" data-filter="alkali">Сілтілік металдар</button>
+                    <button class="filter-btn" data-filter="alkaline">Сілтілік-жер металдары</button>
+                    <button class="filter-btn" data-filter="transition">Өтпелі металдар</button>
+                    <button class="filter-btn" data-filter="nonmetal">Металл емес</button>
+                    <button class="filter-btn" data-filter="noble">Асыл газдар</button>
+                    <button class="filter-btn" data-filter="halogen">Галогендер</button>
+                </div>
+            </div>
+            <div id="periodicTable" class="periodic-table"></div>
+            
+            <div id="elementModal" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <div class="element-detail">
+                        <div class="element-header">
+                            <div class="element-symbol-big" id="modalSymbol"></div>
+                            <div>
+                                <h2 id="modalName"></h2>
+                                <p id="modalNumber"></p>
+                            </div>
+                        </div>
+                        <div class="element-visual">
+                            <canvas id="atomCanvas" width="300" height="300"></canvas>
+                        </div>
+                        <div class="element-properties" id="modalProperties"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Виртуалды зертхана -->
+        <section id="lab" class="section">
+            <div class="lab-container">
+                <h2 class="section-title">Виртуалды Зертхана</h2>
+                
+                <div class="lab-workspace">
+                    <div class="lab-sidebar">
+                        <h3>Реактивтер</h3>
+                        <div class="chemicals-list" id="chemicalsList"></div>
+                        
+                        <h3>Жабдықтар</h3>
+                        <div class="equipment-list" id="equipmentList"></div>
+                    </div>
+                    
+                    <div class="lab-main">
+                        <div class="lab-bench" id="labBench">
+                            <p class="bench-hint">Реактивтерді қосып, реакция жасаңыз</p>
+                        </div>
+                        
+                        <div class="lab-controls">
+                            <button class="lab-btn" id="mixBtn">Араластыру</button>
+                            <button class="lab-btn" id="heatBtn">Қыздыру</button>
+                            <button class="lab-btn secondary" id="resetLabBtn">Тазалау</button>
+                        </div>
+                        
+                        <div id="reactionResult" class="reaction-result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Квесттер (Duolingo стилі) -->
+        <section id="quests" class="section">
+            <div class="quests-container">
+                <h2 class="section-title">Оқу жолы</h2>
+                
+                <div class="quest-path" id="questPath"></div>
+            </div>
+        </section>
+
+        <!-- 3D Молекулалар -->
+        <section id="molecules" class="section">
+            <div class="molecules-container">
+                <h2 class="section-title">3D Молекулалық Модельдер</h2>
+                
+                <div class="molecules-grid" id="moleculesGrid"></div>
+            </div>
+            
+            <div id="molecule3DModal" class="modal">
+                <div class="modal-content modal-large">
+                    <span class="modal-close">&times;</span>
+                    <div class="molecule-3d-viewer">
+                        <h2 id="molecule3DName"></h2>
+                        <div class="molecule-canvas-container">
+                            <canvas id="molecule3DCanvas" width="600" height="600"></canvas>
+                        </div>
+                        <div class="molecule-controls">
+                            <button id="rotateBtn" class="control-btn">Айналдыру</button>
+                            <button id="resetViewBtn" class="control-btn">Қалпына келтіру</button>
+                        </div>
+                        <div class="molecule-info" id="molecule3DInfo"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Adding dedicated quest modal with higher z-index -->
+    <div id="questModal" class="modal quest-modal">
+        <div class="modal-content quest-modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="questModalContent"></div>
+        </div>
+    </div>
+
+    <script src="elements.js"></script>
+    <script src="molecules.js"></script>
+    <script src="quests.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
