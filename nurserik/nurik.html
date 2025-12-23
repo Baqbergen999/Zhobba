@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-сынып Химия | 4-токсан - Premium Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section with Glass Navigation -->
+    <section class="hero-section">
+        <div class="glass-nav">
+            <div class="nav-content">
+                <div class="logo">Химия<span class="logo-highlight">Hub</span></div>
+                <div class="nav-links">
+                    <a href="#topics" class="nav-link">Тақырыптар</a>
+                    <a href="#lessons" class="nav-link">Сабақтар</a>
+                    <a href="#practice" class="nav-link">Практика</a>
+                    <a href="#tests" class="nav-link">Тестілер</a>
+                    <a href="#reference" class="nav-link">Анықтама</a>
+                    <a href="#games" class="nav-link">Ойындар</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">4-токсан | 2024-2025 оқу жылы</div>
+            <h1 class="hero-title">9-сынып<br/>Органикалық Химия</h1>
+            <p class="hero-subtitle">iOS стилінде интерактивті оқу платформасы. Барлық тақырыптар, практикалық жұмыстар және тестілер бір жерде</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('topics')">
+                    <span>Бастау</span>
+                    <span>→</span>
+                </button>
+                <button class="btn-secondary" onclick="showProgress()">
+                    <span>Менің үлгерімім</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="floating-molecules">
+            <div class="molecule molecule-1">CH₄</div>
+            <div class="molecule molecule-2">C₂H₆</div>
+            <div class="molecule molecule-3">C₆H₁₂O₆</div>
+            <div class="molecule molecule-4">H₂O</div>
+        </div>
+    </section>
+
+    <!-- Topics Overview Section -->
+    <section class="topics-section" id="topics">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Негізгі Бөлімдер</h2>
+                <p class="section-subtitle">4-токсанның үш негізгі бағыты</p>
+            </div>
+
+            <div class="topics-grid">
+                <div class="glass-card topic-card" onclick="expandTopic(this, 'organic-intro')">
+                    <div class="topic-icon">🧬</div>
+                    <h3 class="topic-title">9.4 А Органикалық химияға кіріспе</h3>
+                    <p class="topic-duration">5 сағат</p>
+                    <p>Органикалық қосылыстардың негіздері, жіктелуі, гомология және изомерия</p>
+                    <div class="topic-meta">
+                        <span class="topic-lessons">4 сабақ</span>
+                        <span class="topic-status">Қолжетімді</span>
+                    </div>
+                </div>
+
+                <div class="glass-card topic-card" onclick="expandTopic(this, 'hydrocarbons')">
+                    <div class="topic-icon">⛓️</div>
+                    <h3 class="topic-title">9.4 В Көмірсутектер және Отын</h3>
+                    <p class="topic-duration">6 сағат</p>
+                    <p>Алкандар, алкендер, алкиндер, бензол және табиғи отын түрлері</p>
+                    <div class="topic-meta">
+                        <span class="topic-lessons">5 сабақ</span>
+                        <span class="topic-status">Қолжетімді</span>
+                    </div>
+                </div>
+
+                <div class="glass-card topic-card" onclick="expandTopic(this, 'oxygen-nitrogen')">
+                    <div class="topic-icon">🧪</div>
+                    <h3 class="topic-title">9.4 С Оттекті және азотты қосылыстар</h3>
+                    <p class="topic-duration">6 сағат</p>
+                    <p>Спирттер, карбон қышқылдары, көмірсулар, аминқышқылдар және нәруыздар</p>
+                    <div class="topic-meta">
+                        <span class="topic-lessons">6 сабақ</span>
+                        <span class="topic-status">Қолжетімді</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Lessons Section -->
+    <section class="lessons-section" id="lessons">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Барлық Сабақтар</h2>
+                <p class="section-subtitle">16 сағаттық толық бағдарлама</p>
+            </div>
+
+            <!-- Group 1: Organic Chemistry Introduction -->
+            <div class="lesson-group">
+                <div class="glass-card lesson-group-header" onclick="toggleGroup(this)">
+                    <div class="group-info">
+                        <h3>🧬 Органикалық химияға кіріспе</h3>
+                        <p class="group-duration">5 сағат | 4 сабақ</p>
+                    </div>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="lessons-list">
+                    <div class="glass-card lesson-card" onclick="openLesson(53)">
+                        <div class="lesson-number">53</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Органикалық заттардың ерекшеліктері</h4>
+                            <p class="lesson-description">Органикалық қосылыстардың көптүрлілігі, жіктелуі және функционалдық топтар</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Теория</span>
+                                <span class="tag">Модельдер</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(54)">
+                        <div class="lesson-number">54</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Гомологиялық қатарлар</h4>
+                            <p class="lesson-description">Гомолог ұғымы, гомологтық айырмашылық және алкандардың алғашқы өкілдері</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Гомология</span>
+                                <span class="tag">Модельдер</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(55)">
+                        <div class="lesson-number">55</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Номенклатура және изомерия</h4>
+                            <p class="lesson-description">IUPAC номенклатурасы, изомерия құбылысы және құрылымдық изомерлер</p>
+                            <div class="lesson-tags">
+                                <span class="tag">IUPAC</span>
+                                <span class="tag">Изомерия</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(56)">
+                        <div class="lesson-number">56</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Есептер шығару</h4>
+                            <p class="lesson-description">Молекулалық формуланы салыстырмалы тығыздық пен массалық үлес арқылы табу</p>
+                            <div class="lesson-tags">
+                                <span class="tag">БЖБ №1</span>
+                                <span class="tag">Есептеу</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 2: Hydrocarbons and Fuel -->
+            <div class="lesson-group">
+                <div class="glass-card lesson-group-header" onclick="toggleGroup(this)">
+                    <div class="group-info">
+                        <h3>⛓️ Көмірсутектер және Отын</h3>
+                        <p class="group-duration">6 сағат | 5 сабақ</p>
+                    </div>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="lessons-list">
+                    <div class="glass-card lesson-card" onclick="openLesson(57)">
+                        <div class="lesson-number">57</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Алкандар</h4>
+                            <p class="lesson-description">Алкандардың химиялық қасиеттері, хлорлау реакциясы және еріткіштер</p>
+                            <div class="lesson-tags">
+                                <span class="tag">CₙH₂ₙ₊₂</span>
+                                <span class="tag">Қанығу</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(58)">
+                        <div class="lesson-number">58</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Алкендер және полимерлер</h4>
+                            <p class="lesson-description">Этилен, қанықпағандық, қосылу реакциялары және полиэтилен алу</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Көрсетілім</span>
+                                <span class="tag">Полимерлеу</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(59)">
+                        <div class="lesson-number">59</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Алкиндер</h4>
+                            <p class="lesson-description">Этин (ацетилен), үштік байланыс және сапалық реакциялар</p>
+                            <div class="lesson-tags">
+                                <span class="tag">C₂H₂</span>
+                                <span class="tag">Үштік байланыс</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(60)">
+                        <div class="lesson-number">60</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Бензол және көмірсутекті отындар</h4>
+                            <p class="lesson-description">Ароматты қосылыстар, отын түрлері және Қазақстандағы кен орындары</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Көрсетілім</span>
+                                <span class="tag">Экология</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(61)">
+                        <div class="lesson-number">61</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Мұнай және мұнай өнімдері</h4>
+                            <p class="lesson-description">Мұнай фракциялары, айдау процесі және өнімдердің қолдану аймақтары</p>
+                            <div class="lesson-tags">
+                                <span class="tag">БЖБ №2</span>
+                                <span class="tag">Көрсетілім</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 3: Oxygen and Nitrogen Compounds -->
+            <div class="lesson-group">
+                <div class="glass-card lesson-group-header" onclick="toggleGroup(this)">
+                    <div class="group-info">
+                        <h3>🧪 Оттекті және азотты қосылыстар</h3>
+                        <p class="group-duration">6 сағат | 6 сабақ</p>
+                    </div>
+                    <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="lessons-list">
+                    <div class="glass-card lesson-card" onclick="openLesson(62)">
+                        <div class="lesson-number">62</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Оттекті органикалық заттар. Спирттер</h4>
+                            <p class="lesson-description">Спирттердің жіктелуі, метанол, этанол, этиленгликоль және глицерин</p>
+                            <div class="lesson-tags">
+                                <span class="tag">R-OH</span>
+                                <span class="tag">Денсаулық</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(63)">
+                        <div class="lesson-number">63</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Карбон қышқылдары</h4>
+                            <p class="lesson-description">Карбоксил тобы және сірке қышқылының қасиеттері мен қолданылуы</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Зертхана №16</span>
+                                <span class="tag">R-COOH</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(64)">
+                        <div class="lesson-number">64</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Күрделі эфирлер, майлар және сабындар</h4>
+                            <p class="lesson-description">Эфирлер, майлардың қызметі, сабын алу және жуғыш заттардың экологиясы</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Эфирлер</span>
+                                <span class="tag">Экология</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(65)">
+                        <div class="lesson-number">65</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Көмірсулар</h4>
+                            <p class="lesson-description">Көмірсулардың жіктелуі, биологиялық маңызы және қызметі</p>
+                            <div class="lesson-tags">
+                                <span class="tag">БЖБ №3</span>
+                                <span class="tag">Глюкоза</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+
+                    <div class="glass-card lesson-card" onclick="openLesson(66)">
+                        <div class="lesson-number">66</div>
+                        <div class="lesson-content">
+                            <h4 class="lesson-title">Аминқышқылдары және нәруыздар</h4>
+                            <p class="lesson-description">α-аминқышқылдар, пептидтік байланыс, денатурация және биологиялық маңызы</p>
+                            <div class="lesson-tags">
+                                <span class="tag">Зертхана №17</span>
+                                <span class="tag">Нәруыздар</span>
+                            </div>
+                        </div>
+                        <span class="lesson-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="practice-section" id="practice">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Практикалық Жұмыстар</h2>
+                <p class="section-subtitle">Білімді бекіту және тәжірибе жинау</p>
+            </div>
+
+            <div class="practice-grid">
+                <div class="glass-card practice-card highlighted">
+                    <span class="practice-badge">Көрсетілім №11</span>
+                    <h3 class="practice-title">Органикалық қосылыстардың модельдері</h3>
+                    <p class="practice-description">Метан, этан, этилен, этин, этанол, этаналь, этан қышқылы, глюкоза, аминоэтан қышқылының молекулалық модельдері</p>
+                    <button class="practice-btn" onclick="openPractice(11)">Модельдерді көру</button>
+                </div>
+
+                <div class="glass-card practice-card">
+                    <span class="practice-badge">Көрсетілім №12</span>
+                    <h3 class="practice-title">Алкандар мен спирттердің модельдері</h3>
+                    <p class="practice-description">Алкандардың алғашқы бес өкілі және сызықты құрылымды спирттердің молекулалық модельдері</p>
+                    <button class="practice-btn" onclick="openPractice(12)">Бастау</button>
+                </div>
+
+                <div class="glass-card practice-card">
+                    <span class="practice-badge">Көрсетілім №13</span>
+                    <h3 class="practice-title">Пентан изомерлері</h3>
+                    <p class="practice-description">Пентан изомерлерінің молекулалық модельдері және құрылымдық ерекшеліктер</p>
+                    <button class="practice-btn" onclick="openPractice(13)">Бастау</button>
+                </div>
+
+                <div class="glass-card practice-card highlighted">
+                    <span class="practice-badge">Көрсетілім №14</span>
+                    <h3 class="practice-title">Этиленнің химиялық қасиеттері</h3>
+                    <p class="practice-description">Этиленнің жануы, бром суы мен калий перманганаты ерітінділерін түссіздендіру</p>
+                    <button class="practice-btn" onclick="openPractice(14)">Эксперимент</button>
+                </div>
+
+                <div class="glass-card practice-card">
+                    <span class="practice-badge">Көрсетілім №15</span>
+                    <h3 class="practice-title">Отын түрлері</h3>
+                    <p class="practice-description">Әртүрлі отын түрлерінің салыстырмалы талдауы және қолдану аймақтары</p>
+                    <button class="practice-btn" onclick="openPractice(15)">Зерттеу</button>
+                </div>
+
+                <div class="glass-card practice-card highlighted">
+                    <span class="practice-badge">Көрсетілім №16</span>
+                    <h3 class="practice-title">Мұнай және мұнай өнімдері</h3>
+                    <p class="practice-description">Мұнай фракцияларының көрінісі және өнімдердің физикалық қасиеттері</p>
+                    <button class="practice-btn" onclick="openPractice(16)">Талдау</button>
+                </div>
+
+                <div class="glass-card practice-card">
+                    <span class="practice-badge lab">Зертхана №16</span>
+                    <h3 class="practice-title">Сірке қышқылының қасиеттерін зерттеу</h3>
+                    <p class="practice-description">Практикалық зертханалық жұмыс: сірке қышқылының химиялық қасиеттерін эксперимент арқылы зерттеу</p>
+                    <button class="practice-btn" onclick="openPractice('lab-16')">Зертхана</button>
+                </div>
+
+                <div class="glass-card practice-card">
+                    <span class="practice-badge lab">Зертхана №17</span>
+                    <h3 class="practice-title">Нәруыздардың денатурациясы</h3>
+                    <p class="practice-description">Практикалық зертханалық жұмыс: нәруыз денатурациясының реакциясын зерттеу</p>
+                    <button class="practice-btn" onclick="openPractice('lab-17')">Зертхана</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tests Section -->
+    <section class="tests-section" id="tests">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Бақылау Жұмыстары</h2>
+                <p class="section-subtitle">Білімді тексеру және бағалау</p>
+            </div>
+
+            <div class="tests-grid">
+                <div class="glass-card test-card">
+                    <div class="test-icon">📝</div>
+                    <h3 class="test-title">БЖБ №1</h3>
+                    <p class="test-topic">Органикалық химияға кіріспе</p>
+                    <p class="test-description">Молекулалық формуланы салыстырмалы тығыздық пен элементтердің массалық үлестері арқылы табу</p>
+                    <div class="test-meta">
+                        <span>⏱️ 45 минут</span>
+                        <span>📊 20 балл</span>
+                    </div>
+                    <button class="test-btn" onclick="startTest(1)">Тест бастау</button>
+                </div>
+
+                <div class="glass-card test-card">
+                    <div class="test-icon">📝</div>
+                    <h3 class="test-title">БЖБ №2</h3>
+                    <p class="test-topic">Көмірсутектер және отын</p>
+                    <p class="test-description">Алкандар, алкендер, алкиндер, мұнай және табиғи газ бойынша кешенді тест</p>
+                    <div class="test-meta">
+                        <span>⏱️ 45 минут</span>
+                        <span>📊 25 балл</span>
+                    </div>
+                    <button class="test-btn" onclick="startTest(2)">Тест бастау</button>
+                </div>
+
+                <div class="glass-card test-card">
+                    <div class="test-icon">📝</div>
+                    <h3 class="test-title">БЖБ №3</h3>
+                    <p class="test-topic">Оттекті және азотты қосылыстар</p>
+                    <p class="test-description">Спирттер, қышқылдар, көмірсулар және нәруыздар бойынша жиынтық бақылау</p>
+                    <div class="test-meta">
+                        <span>⏱️ 45 минут</span>
+                        <span>📊 25 балл</span>
+                    </div>
+                    <button class="test-btn" onclick="startTest(3)">Тест бастау</button>
+                </div>
+            </div>
+
+            <div class="review-section">
+                <h3 class="review-title">Жылдам қайталау материалдары</h3>
+                <div class="review-grid">
+                    <div class="glass-card review-card" onclick="openReview('Формулалар')">
+                        <h4>📐 Барлық формулалар</h4>
+                        <p>Жалпы формулалар және негізгі реакциялар</p>
+                    </div>
+                    <div class="glass-card review-card" onclick="openReview('Гомологтық қатарлар')">
+                        <h4>⛓️ Гомологтық қатарлар</h4>
+                        <p>Алкандар, алкендер, алкиндер гомологтары</p>
+                    </div>
+                    <div class="glass-card review-card" onclick="openReview('Функционалдық топтар')">
+                        <h4>🔬 Функционалдық топтар</h4>
+                        <p>-OH, -COOH, -CHO және басқа топтар</p>
+                    </div>
+                    <div class="glass-card review-card" onclick="openReview('Сапалық реакциялар')">
+                        <h4>🧪 Сапалық реакциялар</h4>
+                        <p>Заттарды анықтау реакциялары</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reference Tables Section -->
+    <section class="reference-section" id="reference">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Анықтамалық Материалдар</h2>
+                <p class="section-subtitle">Кестелер, формулалар және қосымша ақпарат</p>
+            </div>
+
+            <div class="tables-container">
+                <div class="glass-card table-card" onclick="toggleTable(this)">
+                    <div class="table-header">
+                        <h4>🧬 Көмірсутектердің салыстырмалы кестесі</h4>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Класс</th>
+                                    <th>Жалпы формула</th>
+                                    <th>Байланыс</th>
+                                    <th>Мысал</th>
+                                    <th>Қолданылуы</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Алкандар</td>
+                                    <td>CₙH₂ₙ₊₂</td>
+                                    <td>Жалғыз</td>
+                                    <td>CH₄ (метан)</td>
+                                    <td>Отын, еріткіштер</td>
+                                </tr>
+                                <tr>
+                                    <td>Алкендер</td>
+                                    <td>CₙH₂ₙ</td>
+                                    <td>Қос</td>
+                                    <td>C₂H₄ (этилен)</td>
+                                    <td>Полимерлер, пластик</td>
+                                </tr>
+                                <tr>
+                                    <td>Алкиндер</td>
+                                    <td>CₙH₂ₙ₋₂</td>
+                                    <td>Үштік</td>
+                                    <td>C₂H₂ (ацетилен)</td>
+                                    <td>Дәнекерлеу, синтез</td>
+                                </tr>
+                                <tr>
+                                    <td>Арендер</td>
+                                    <td>CₙH₂ₙ₋₆</td>
+                                    <td>Ароматты</td>
+                                    <td>C₆H₆ (бензол)</td>
+                                    <td>Еріткіштер, синтез</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card" onclick="toggleTable(this)">
+                    <div class="table-header">
+                        <h4>🔬 Функционалдық топтар</h4>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Класс</th>
+                                    <th>Функционалдық топ</th>
+                                    <th>Жалпы формула</th>
+                                    <th>Мысал</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Спирттер</td>
+                                    <td>-OH (гидроксил)</td>
+                                    <td>R-OH</td>
+                                    <td>C₂H₅OH (этанол)</td>
+                                </tr>
+                                <tr>
+                                    <td>Альдегидтер</td>
+                                    <td>-CHO (альдегид)</td>
+                                    <td>R-CHO</td>
+                                    <td>CH₃CHO (ацетальдегид)</td>
+                                </tr>
+                                <tr>
+                                    <td>Карбон қышқылдары</td>
+                                    <td>-COOH (карбоксил)</td>
+                                    <td>R-COOH</td>
+                                    <td>CH₃COOH (сірке қышқылы)</td>
+                                </tr>
+                                <tr>
+                                    <td>Аминқышқылдар</td>
+                                    <td>-NH₂ және -COOH</td>
+                                    <td>NH₂-R-COOH</td>
+                                    <td>NH₂CH₂COOH (глицин)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card" onclick="toggleTable(this)">
+                    <div class="table-header">
+                        <h4>📊 Алкандардың физикалық қасиеттері</h4>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Атауы</th>
+                                    <th>Формула</th>
+                                    <th>Күйі (20°C)</th>
+                                    <th>Қайнау t°C</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Метан</td>
+                                    <td>CH₄</td>
+                                    <td>Газ</td>
+                                    <td>-162</td>
+                                </tr>
+                                <tr>
+                                    <td>Этан</td>
+                                    <td>C₂H₆</td>
+                                    <td>Газ</td>
+                                    <td>-89</td>
+                                </tr>
+                                <tr>
+                                    <td>Пропан</td>
+                                    <td>C₃H₈</td>
+                                    <td>Газ</td>
+                                    <td>-42</td>
+                                </tr>
+                                <tr>
+                                    <td>Бутан</td>
+                                    <td>C₄H₁₀</td>
+                                    <td>Газ</td>
+                                    <td>-0.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Пентан</td>
+                                    <td>C₅H₁₂</td>
+                                    <td>Сұйық</td>
+                                    <td>36</td>
+                                </tr>
+                                <tr>
+                                    <td>Гексан</td>
+                                    <td>C₆H₁₄</td>
+                                    <td>Сұйық</td>
+                                    <td>69</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card" onclick="toggleTable(this)">
+                    <div class="table-header">
+                        <h4>⚗️ Негізгі реакциялар кестесі</h4>
+                        <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Реакция түрі</th>
+                                    <th>Мысал</th>
+                                    <th>Қолданылуы</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Жану реакциясы</td>
+                                    <td>CH₄ + 2O₂ → CO₂ + 2H₂O</td>
+                                    <td>Отын, энергия алу</td>
+                                </tr>
+                                <tr>
+                                    <td>Қосылу (гидрлеу)</td>
+                                    <td>C₂H₄ + H₂ → C₂H₆</td>
+                                    <td>Қанықпау заттарды қанықтыру</td>
+                                </tr>
+                                <tr>
+                                    <td>Галогендеу</td>
+                                    <td>C₂H₄ + Br₂ → C₂H₄Br₂</td>
+                                    <td>Сапалық реакция</td>
+                                </tr>
+                                <tr>
+                                    <td>Полимерлеу</td>
+                                    <td>n·C₂H₄ → (-C₂H₄-)ₙ</td>
+                                    <td>Пластик алу</td>
+                                </tr>
+                                <tr>
+                                    <td>Эфирлену</td>
+                                    <td>R-OH + R-COOH → R-COO-R + H₂O</td>
+                                    <td>Эфирлер алу</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section" id="games">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Интерактивті Ойындар</h2>
+                <p class="section-subtitle">Білімді ойын арқылы бекітіңіз</p>
+            </div>
+
+            <div class="games-grid">
+                <div class="glass-card game-card" onclick="startGame('formula-match')">
+                    <div class="game-icon">🎯</div>
+                    <h3 class="game-title">Формула Жұптастыру</h3>
+                    <p class="game-description">Заттардың атауын олардың формуласымен дұрыс жұптастырыңыз</p>
+                    <div class="game-difficulty easy">Оңай</div>
+                </div>
+
+                <div class="glass-card game-card" onclick="startGame('reaction-balance')">
+                    <div class="game-icon">⚖️</div>
+                    <h3 class="game-title">Реакция Теңдестіру</h3>
+                    <p class="game-description">Химиялық реакцияларды дұрыс теңдестіріңіз</p>
+                    <div class="game-difficulty medium">Орташа</div>
+                </div>
+
+                <div class="glass-card game-card" onclick="startGame('molecule-builder')">
+                    <div class="game-icon">🧬</div>
+                    <h3 class="game-title">Молекула Құрастырушы</h3>
+                    <p class="game-description">Атомдардан органикалық молекулалар құрастырыңыз</p>
+                    <div class="game-difficulty medium">Орташа</div>
+                </div>
+
+                <div class="glass-card game-card" onclick="startGame('chemistry-quiz')">
+                    <div class="game-icon">❓</div>
+                    <h3 class="game-title">Жылдам Викторина</h3>
+                    <p class="game-description">30 секундта барынша көп сұраққа жауап беріңіз</p>
+                    <div class="game-difficulty hard">Қиын</div>
+                </div>
+
+                <div class="glass-card game-card" onclick="startGame('isomer-challenge')">
+                    <div class="game-icon">🔄</div>
+                    <h3 class="game-title">Изомер Челлендж</h3>
+                    <p class="game-description">Берілген формуладан барлық изомерлерді табыңыз</p>
+                    <div class="game-difficulty hard">Қиын</div>
+                </div>
+
+                <div class="glass-card game-card" onclick="startGame('functional-groups')">
+                    <div class="game-icon">🔬</div>
+                    <h3 class="game-title">Функционалдық Топтар</h3>
+                    <p class="game-description">Заттарды функционалдық топтары бойынша жіктеңіз</p>
+                    <div class="game-difficulty easy">Оңай</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+        <div class="container">
+            <div class="glass-card progress-card">
+                <h2 class="progress-title">Сіздің үлгеріміңіз</h2>
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <p class="stat-label">Аяқталған сабақтар</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <p class="stat-label">Практикалық жұмыстар</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <p class="stat-label">Бақылау жұмыстары</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">94%</div>
+                        <p class="stat-label">Жалпы үлгерім</p>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 94%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ХимияHub</h4>
+                    <p>9-сынып химия пәні бойынша интерактивті оқу платформасы</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Байланыс</h4>
+                    <p>4-токсан материалдары<br/>2024-2025 оқу жылы</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Ресурстар</h4>
+                    <p>Барлық материалдар мектеп бағдарламасына сәйкес дайындалған</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ХимияHub. Premium iOS Design. Барлық құқықтар қорғалған.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="lessonModal" class="modal">
+        <div class="modal-content glass-modal">
+            <span class="close-modal" onclick="closeModal('lessonModal')">&times;</span>
+            <div id="lessonContent"></div>
+        </div>
+    </div>
+
+    <div id="gameModal" class="modal">
+        <div class="modal-content glass-modal">
+            <span class="close-modal" onclick="closeModal('gameModal')">&times;</span>
+            <div id="gameContent"></div>
+        </div>
+    </div>
+
+    <div id="testModal" class="modal">
+        <div class="modal-content glass-modal large">
+            <span class="close-modal" onclick="closeModal('testModal')">&times;</span>
+            <div id="testContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
