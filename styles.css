@@ -8,7 +8,8 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
   color: #fff;
-  min-height: 100vh;
+  height: fit-content;
+
 }
 
 /* Жүктеу экраны */

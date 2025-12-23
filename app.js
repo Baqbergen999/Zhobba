@@ -308,12 +308,23 @@ function getCategoryName(category) {
 
 function renderLab() {
   const chemicals = [
-    { id: "H2O", name: "Су (H₂O)", color: "#00bfff" },
+    // Хлорсутек қышқылы
     { id: "HCl", name: "Тұз қышқылы (HCl)", color: "#ff6b6b" },
-    { id: "NaOH", name: "Сілті (NaOH)", color: "#6bcf7f" },
+
+    // Сілті
+    { id: "NaOH", name: "Натрий гидроксиді (NaOH)", color: "#6bcf7f" },
+
+    // Күкірт қышқылы
     { id: "H2SO4", name: "Күкірт қышқылы (H₂SO₄)", color: "#ff9ff3" },
-    { id: "NaCl", name: "Тұз (NaCl)", color: "#ffffff" },
-    { id: "CaCO3", name: "Әктас (CaCO₃)", color: "#f0f0f0" },
+
+    // Карбонат (әк тас)
+    { id: "CaCO3", name: "Кальций карбонаты (CaCO₃)", color: "#f0f0f0" },
+
+    // Аммиак
+    { id: "NH3", name: "Аммиак (NH₃)", color: "#74b9ff" },
+
+    // Азот қышқылы
+    { id: "HNO3", name: "Азот қышқылы (HNO₃)", color: "#ffeaa7" },
   ]
 
   const chemicalsList = document.getElementById("chemicalsList")
@@ -353,6 +364,7 @@ function renderLab() {
   document.getElementById("heatBtn").onclick = heatChemicals
   document.getElementById("resetLabBtn").onclick = resetLab
 }
+
 
 function addToLabBench(id, name) {
   const labBench = document.getElementById("labBench")
